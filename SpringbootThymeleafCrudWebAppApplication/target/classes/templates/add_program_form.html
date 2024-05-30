@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Program</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+<div class="bg-white rounded-lg p-8 shadow-lg max-w-md mx-auto">
+    <a href="/add-edit-program" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mb-4">Back</a>
+<!--    <a href="/" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mb-4">-->
+<!--        &larr; &lt;!&ndash; Left arrow entity &ndash;&gt;-->
+<!--    </a>-->
+    <h2 class="text-3xl font-bold text-center mb-8">Add Program</h2>
+    <form action="/add-program" method="post">
+        <div class="mb-6">
+            <label for="programType" class="block text-gray-700 font-bold mb-2">Program Type:</label>
+            <select id="programType" name="programType" class="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-500">
+                <option value="New">New</option>
+                <option value="Old">Old</option>
+            </select>
+        </div>
+
+<!--        <div class="mb-6">-->
+<!--            <label for="programCategory" class="block text-gray-700 font-bold mb-2">Program Category:</label>-->
+<!--            <input type="text" id="programCategory" name="programCategory" class="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-500">-->
+<!--        </div>-->
+
+        <div class="mb-6">
+            <label for="programCategory" class="block text-gray-700 font-bold mb-2">Program Category:</label>
+            <select id="programCategory" name="programCategory" class="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-500">
+                <option value="">Program Category</option>
+                <!-- Loop through the program categories and populate the dropdown options -->
+                <th:block th:each="category : ${categories}">
+                    <option th:value="${category.courseCategoryCode}" th:text="${category.courseCategoryName}"></option>
+                </th:block>
+            </select>
+        </div>
+        <div class="mb-6">
+            <label for="programName" class="block text-gray-700 font-bold mb-2">Program Name:</label>
+            <input type="text" id="programName" name="programName" class="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-500 placeholder-gray-400">
+        </div>
+
+        <div class="mb-6">
+            <label for="program" class="block text-gray-700 font-bold mb-2">Program Code:</label>
+            <input type="text" id="program" name="programCode" class="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-500 placeholder-gray-400">
+        </div>
+
+        <div class="mb-6">
+            <label for="programDescription" class="block text-gray-700 font-bold mb-2">Program Description:</label>
+            <textarea id="programDescription" name="programDescription" class="border border-gray-300 rounded-lg px-4 py-2 w-full h-32 focus:outline-none focus:border-blue-500 placeholder-gray-400"></textarea>
+        </div>
+
+
+        <div class="mb-6">
+            <label for="venue" class="block text-gray-700 font-bold mb-2">Select Venue:</label>
+            <select id="venue" name="venueCode" class="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-500">
+                <option value="">Select Venue</option>
+                <th:block th:each="venue : ${venues}">
+                    <option th:value="${venue.venueCode}" th:text="${venue.venueName}"></option>
+                </th:block>
+            </select>
+        </div>
+
+        <div class="mb-6">
+            <label class="block text-gray-700 font-bold mb-2">Will the program have phases?</label>
+            <div class="flex items-center">
+                <input type="radio" id="hasPhasesYes" name="hasPhases" value="true" class="mr-2">
+                <label for="hasPhasesYes" class="mr-4">Yes</label>
+                <input type="radio" id="hasPhasesNo" name="hasPhases" value="false" class="mr-2">
+                <label for="hasPhasesNo">No</label>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <label for="startDate" class="block text-gray-700 font-bold mb-2">Start Date:</label>
+            <input type="date" id="startDate" name="startDate" class="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-500">
+        </div>
+
+        <div class="mb-6">
+            <label for="endDate" class="block text-gray-700 font-bold mb-2">End Date:</label>
+            <input type="date" id="endDate" name="endDate" class="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-500">
+        </div>
+
+        <div class="mb-6">
+            <label for="lastDate" class="block text-gray-700 font-bold mb-2">Last Date:</label>
+            <input type="date" id="lastDate" name="lastDate" class="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-500">
+        </div>
+        <input type="hidden" id="programState" name="programState" value="Pending">
+
+        <div class="flex justify-center">
+            <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600">Submit</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

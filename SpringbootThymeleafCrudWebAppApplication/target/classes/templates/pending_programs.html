@@ -1,0 +1,84 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Pending Programs</title>-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">-->
+<!--</head>-->
+<!--<body class="bg-gray-100">-->
+<!--<div class="container mx-auto">-->
+<!--    <a href="/" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mb-4">Back</a>-->
+<!--    <h2 class="text-3xl font-bold text-center mb-8">Pending Programs</h2>-->
+<!--    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">-->
+<!--        &lt;!&ndash; Iterate over pending programs and display them &ndash;&gt;-->
+
+<!--        <div th:each="program : ${pendingPrograms}" class="bg-white rounded-lg p-8 shadow-lg">-->
+<!--            <h3 class="text-xl font-bold mb-4" th:text="${program.programName}"></h3>-->
+<!--            <p class="text-gray-700 mb-2">Program Code: <span th:text="${program.programCode}"></span></p>-->
+<!--            <p class="text-gray-700 mb-2">Start Date: <span th:text="${program.startDate}"></span></p>-->
+<!--            <p class="text-gray-700 mb-2">End Date: <span th:text="${program.endDate}"></span></p>-->
+<!--            <p class="text-gray-700" th:text="${program.programDescription}"></p>-->
+<!--            <div class="mt-4 flex justify-between">-->
+<!--                <form th:action="@{/accept-program}" method="post">-->
+<!--                    <input type="hidden" name="programId" th:value="${program.programId}">-->
+<!--                    <button type="submit" class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 mr-2">Accept</button>-->
+<!--                </form>-->
+<!--                <form th:action="@{/reject-program}" method="post">-->
+<!--                    <input type="hidden" name="programId" th:value="${program.programId}">-->
+<!--                    <button type="submit" class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Reject</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Programs</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+<div class="container mx-auto">
+    <a href="/add-edit-program" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mb-4">Back</a>
+    <h2 class="text-3xl font-bold text-center mb-8">Pending Programs</h2>
+    <table class="min-w-full divide-y divide-gray-200">
+        <thead>
+        <tr>
+            <th class="px-6 py-3 bg-gray-50 text-center">Program Name</th>
+            <th class="px-6 py-3 bg-gray-50 text-center">Program Code</th>
+            <th class="px-6 py-3 bg-gray-50 text-center">Start Date</th>
+            <th class="px-6 py-3 bg-gray-50 text-center">End Date</th>
+            <th class="px-6 py-3 bg-gray-50"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterate over pending programs and display them -->
+        <tr th:each="program : ${pendingPrograms}" class="py-6">
+            <td class="px-6 py-4 whitespace-nowrap text-center">
+                <div class="text-xl font-bold" th:text="${program.programName}"></div>
+                <div class="text-gray-700" th:text="${program.programDescription}"></div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-center" th:text="${program.programDetailId}"></td>
+            <td class="px-6 py-4 whitespace-nowrap text-center" th:text="${program.startDate}"></td>
+            <td class="px-6 py-4 whitespace-nowrap text-center" th:text="${program.endDate}"></td>
+            <td class="px-6 py-4 whitespace-nowrap flex justify-end">
+                <form th:action="@{/accept-program}" method="post">
+                    <input type="hidden" name="programId" th:value="${program.programDetailId}">
+                    <button type="submit" class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 mr-2">Accept</button>
+                </form>
+                <form th:action="@{/reject-program}" method="post">
+                    <input type="hidden" name="programId" th:value="${program.programDetailId}">
+                    <button type="submit" class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Reject</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
