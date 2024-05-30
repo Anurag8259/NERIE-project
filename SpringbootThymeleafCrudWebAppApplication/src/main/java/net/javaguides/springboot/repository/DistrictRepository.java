@@ -1,7 +1,6 @@
 package net.javaguides.springboot.repository;
 
 import net.javaguides.springboot.model.m_districts;
-import net.javaguides.springboot.model.m_states;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

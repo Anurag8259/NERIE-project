@@ -17,8 +17,6 @@ public class m_programs {
     private String programDescription;
     @Column(name="officecode")
     private String officeCode;
-//    @Column(name="coursecodecategory")
-//    private String courseCodeCategory;
 
     public String getOfficeCode() {
         return officeCode;
@@ -28,16 +26,7 @@ public class m_programs {
         this.officeCode = officeCode;
     }
 
-//    @ManyToOne
-//    @JoinColumn(name = "coursecodecategory", referencedColumnName = "coursecategorycode")
-//    private m_coursecategories courseCategory;
-//    public String getCourseCodeCategory() {
-//        return courseCodeCategory;
-//    }
-//
-//    public void setCourseCodeCategory(String courseCodeCategory) {
-//        this.courseCodeCategory = courseCodeCategory;
-//    }
+
 
     @ManyToOne
     @JoinColumn(name = "coursecodecategory", referencedColumnName = "coursecategorycode")

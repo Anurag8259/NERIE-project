@@ -11,7 +11,7 @@ import java.util.UUID;
 public class ProgramDetailIdGenerator implements IdentifierGenerator {
 
 
-    private static final long serialVersionUID=-160234233432342342L;
+//    private static final long serialVersionUID=-160234233432342342L;
     int year= Year.now().getValue();
     Random rand=new Random();
     @Override

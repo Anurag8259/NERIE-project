@@ -12,11 +12,8 @@ public class mt_programdetails {
     @Id
     @GeneratedValue(generator = "programdetail_id")
     @GenericGenerator(name="programdetail_id", strategy= "net.javaguides.springboot.model.ProgramDetailIdGenerator")
-//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="programdetailid")
     private String programDetailId ;
-
-
 
     @Column(name="categorytype")
     private String categoryType;
@@ -35,8 +32,6 @@ public class mt_programdetails {
     @Column(name="lastdate")
     private LocalDate lastDate;
 
-
-
     @Column(name="approvaldate")
     private LocalDate approvalDate;
 
@@ -45,11 +40,6 @@ public class mt_programdetails {
 
     @Column(name="programtype")
     private String programType;
-
-
-//    @ManyToOne
-//    @JoinColumn(name = "programcode", referencedColumnName = "programCode")
-//    private m_programs program;
 
     @Column(name="programcategory")
     private String programCategory;
@@ -72,16 +62,15 @@ public class mt_programdetails {
     @Column(name="venues")
     private String venues;
 
-    public String getVenues() {
-        return venues;
-    }
-
-    public void setVenues(String venues) {
-        this.venues = venues;
-    }
-
     @Column(name="programstate")
     private String programState;
+
+
+
+
+
+
+//    RELATIONSHIPS
 
     @ManyToOne
     @JoinColumn(name = "programcode", referencedColumnName = "programcode")
@@ -91,8 +80,23 @@ public class mt_programdetails {
     @JoinColumn(name = "phaseid", referencedColumnName = "phaseid")
     private m_phases phase;
 
+
+
+
+
+    // GETTER AND SETTER
+
+
     public m_phases getPhase() {
         return phase;
+    }
+
+    public String getVenues() {
+        return venues;
+    }
+
+    public void setVenues(String venues) {
+        this.venues = venues;
     }
 
     public void setPhase(m_phases phase) {
@@ -114,7 +118,6 @@ public class mt_programdetails {
     public void setProgramType(String programType) {
         this.programType = programType;
     }
-// Getters and setters
 
     public String getProgramDetailId() {
         return programDetailId;
@@ -163,14 +166,6 @@ public class mt_programdetails {
     public void setLastDate(LocalDate lastDate) {
         this.lastDate = lastDate;
     }
-
-//    public String getPhaseId() {
-//        return phaseId;
-//    }
-//
-//    public void setPhaseId(String phaseId) {
-//        this.phaseId = phaseId;
-//    }
 
     public LocalDate getApprovalDate() {
         return approvalDate;
@@ -252,26 +247,4 @@ public class mt_programdetails {
         this.programState = programState;
     }
 
-
-//    @Override
-//    public String toString() {
-//        return "mt_programdetails{" +
-//                "programDetailId='" + programDetailId + '\'' +
-//                ", programName='" + programName + '\'' +
-//                ", programDescription='" + programDescription + '\'' +
-//                ", startDate=" + startDate +
-//                ", endDate=" + endDate +
-//                ", lastDate=" + lastDate +
-//                ", approvalDate=" + approvalDate +
-//                ", approvedUserCode='" + approvedUserCode + '\'' +
-//                ", program=" + program +
-//                ", programCategory='" + programCategory + '\'' +
-//                ", officeCode='" + officeCode + '\'' +
-//                ", closed='" + closed + '\'' +
-//                ", closingReport='" + closingReport + '\'' +
-//                ", enteredBy='" + enteredBy + '\'' +
-//                ", hasPhases='" + hasPhases + '\'' +
-//                ", programState='" + programState + '\'' +
-//                '}';
-//    }
 }

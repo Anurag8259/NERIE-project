@@ -1,12 +1,12 @@
 package net.javaguides.springboot.controller;
 
 
-import net.javaguides.springboot.model.m_coursecategories;
-import net.javaguides.springboot.model.m_programs;
 import net.javaguides.springboot.model.m_venues;
 import net.javaguides.springboot.model.mt_programdetails;
 import net.javaguides.springboot.repository.CategoryRepository;
 import net.javaguides.springboot.repository.Program2Repository;
+import net.javaguides.springboot.model.m_coursecategories;
+import net.javaguides.springboot.model.m_programs;
 import net.javaguides.springboot.repository.ProgramRepository;
 import net.javaguides.springboot.repository.VenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +30,17 @@ public class ProgramController {
     private VenueRepository venueRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+
+
+
+    @GetMapping("/add-program")
+    public String addProgramPage(Model model) {
+        List<m_venues> venues = venueRepository.findAll();
+        model.addAttribute("venues", venues);
+        List<m_coursecategories> categories = categoryRepository.findAll();
+        model.addAttribute("categories", categories);
+        return "add_program_form";
+    }
 
     @PostMapping("/add-program")
     public String addProgram(
@@ -108,6 +119,7 @@ public class ProgramController {
         }
         return "redirect:/pending-programs";
     }
+
     @GetMapping("/accepted-programs")
     public String acceptedPrograms(Model model) {
         List<mt_programdetails> acceptedPrograms = programRepository.findByProgramState("Accepted");

@@ -10,7 +10,6 @@ public class mt_program_members {
     @Column(name="program_memberid")
     private int programMemberId;
 
-
     @ManyToOne
     @JoinColumn(name = "programcode", referencedColumnName = "programcode")
     private m_programs program;
